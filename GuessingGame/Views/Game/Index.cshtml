@@ -1,12 +1,13 @@
 ﻿@model GuessingGame.Models.GameModel
 
-@{//@ is not a valid html character, which is why @ is used to denote C#/razor language 
-    ViewBag.Title = "Index";//ViewBag treated as object; no check on it
-}@*Anything in razor language must be evaluated*@
+@{ 
+    ViewBag.Title = "Index";
+}
 
-<h2>Index</h2>@*anything in html gets sent straight to browser*@
+<h2>Index</h2>
 
-@if (!(ViewBag.Win ?? false))//will return something so we don't return null; if we haven't won, then show the form
+@if (!(ViewBag.Win ?? false))
+//will return something so we don't return null; if we haven't won, then show the form
 {
     if (ViewBag.Win != null && !ViewBag.Win)
     {
@@ -61,3 +62,20 @@ else
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+@*Additional Notes*@
+
+@*html gets sent straight to browser; razor must first be evaluated*@
+
+@*ViewBag treated as object; no type check on it; it's just a big dynamic bag of stuff*@
+
+@*(!(ViewBag?.Win ?? false)) is short-hand for line below*@
+@*(ViewBag != null ? ViewBag.Win : null) != null ? ViewBag.Win : false*@
+
+@*(!(ViewBag.Win ?? false)) is short-hand for line below*@
+@*ViewBag.Win != null ? ViewBag.Win : false*@
+
+@*"??" is the null coalescing operator; shorthand for ternary*@
+
+@*"@" is not a valid html character, which is why @ is used to denote C#/razor language*@
